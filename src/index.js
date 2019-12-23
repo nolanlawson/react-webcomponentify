@@ -15,7 +15,7 @@ const getCustomElementFromReactComponent = RComponent => {
       super();
       this.props = getPropsFromNode(this);
       this.observer = new MutationObserver(this._onMutation);
-      this.shadow = this.attachShadow({ mode: "closed" });
+      this.shadow = this.attachShadow({ mode: "open" });
       renderReact2Node(RComponent, this.props, this.shadow, this._onReactMount);
     }
 
@@ -41,7 +41,7 @@ const getCustomElementFromReactComponent = RComponent => {
     };
     /*
         No need to observe child elements here.
-        Child elements are HTMLCollection which are live by default. 
+        Child elements are HTMLCollection which are live by default.
         That means when child elements change the HTMLCollection will change automatically.
         The reference to HTMLCollection doesnt change, only the items inside it will change.
         Hence we should just pass through the children (HTMLCollection) as is on first render to react and forget about it.
