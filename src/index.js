@@ -15,8 +15,7 @@ const getCustomElementFromReactComponent = RComponent => {
       super();
       this.props = getPropsFromNode(this);
       this.observer = new MutationObserver(this._onMutation);
-      this.shadow = this.attachShadow({ mode: "open" });
-      renderReact2Node(RComponent, this.props, this.shadow, this._onReactMount);
+      renderReact2Node(RComponent, this.props, this, this._onReactMount);
     }
 
     setProps = newProps => {
